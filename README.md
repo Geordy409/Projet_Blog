@@ -1,25 +1,24 @@
-````markdown
-# 🚀 Création du projet avec Vite
+
+🚀 Création du projet avec Vite
 
 Ce guide vous accompagne dans la création d’un projet utilisant **Vite** avec **Sass**. Il part d’un projet vierge pour en faciliter la compréhension.
 
----
 
-## 📁 Étapes de configuration initiale
 
-### 1. Initialisez le projet Node
+📁 Étapes de configuration initiale
 
-```bash
+1. Initialisez le projet Node
+
+
 npm init
-```
 
-### 2. Installez Vite en tant que dépendance de développement
 
-```bash
+ 2. Installez Vite en tant que dépendance de développement
+
 npm i -D vite
-```
 
-### 3. Créez le fichier de configuration `vite.config.js`
+
+3. Créez le fichier de configuration `vite.config.js`
 
 ```js
 import { defineConfig } from "vite";
@@ -35,7 +34,7 @@ export default defineConfig({
 
 ---
 
-## 📄 Fichier `.gitignore`
+ 📄 Fichier `.gitignore`
 
 Créez un fichier `.gitignore` à la racine du projet et ajoutez-y :
 
@@ -46,7 +45,7 @@ dist
 
 ---
 
-## 🗂️ Structure de base
+🗂️ Structure de base
 
 Créez un dossier `src` avec les fichiers suivants :
 
@@ -56,9 +55,9 @@ Créez un dossier `src` avec les fichiers suivants :
 
 ---
 
-## 🎨 Utilisation de Sass avec Vite
+ 🎨 Utilisation de Sass avec Vite
 
-### 1. Installation de Sass
+1. Installation de Sass
 
 Pour ajouter Sass à votre projet Vite :
 
@@ -66,25 +65,25 @@ Pour ajouter Sass à votre projet Vite :
 npm install -D sass
 ```
 
-### 2. Renommer le fichier CSS
+ 2. Renommer le fichier CSS
 
 Renommez le fichier `style.css` en :
 
-```
+
 style.scss
-```
+
 
 Vite reconnaîtra automatiquement le fichier comme un fichier Sass.
 
 ---
 
-## ✅ Vous êtes prêts !
+✅ Vous êtes prêts !
 
 Lancez le serveur de développement avec :
 
-```bash
+
 npx vite
-```
+
 
 Ou ajoutez un script dans le `package.json` :
 
@@ -96,13 +95,6 @@ Ou ajoutez un script dans le `package.json` :
 
 Et démarrez avec :
 
-```bash
+
 npm run dev
-```
 
----
-
-```
-
-```
-````
