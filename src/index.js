@@ -2,6 +2,7 @@ import "./assets/styles/styles.scss";
 import "./index.scss";
 
 const articleContainerElement = document.querySelector(".articles-container");
+const categoriesContainerElement = document.querySelector(".categories");
 
 const createArticles = (articles) => {
   const articlesDOM = articles.map((article) => {
@@ -20,9 +21,7 @@ const createArticles = (articles) => {
       day: "2-digit",
       month: "long",
       year: "numeric",
-    })}
-
-    </p>
+    })}</p>
 <p class="article-content">
   ${article.content}
 </p>
@@ -41,42 +40,67 @@ const createArticles = (articles) => {
     button.addEventListener("click", (event) => {
       const target = event.target;
       const articleId = target.dataset.id;
-      location.assign(`/form/form.html?article?id=${articleId}`);
+      // Lien pour l'éditeur en ligne
+      window.location.assign(`/form/form.html?id=${articleId}`);
     });
   });
   deleteButtons.forEach((button) => {
     button.addEventListener("click", async (event) => {
       try {
         const target = event.target;
-        const articleId = target.getAttribute("data-id");
-        console.log("ID de l'article à supprimer :", articleId);
+        const articleId = target.dataset.id;
         const response = await fetch(
           `https://restapi.fr/api/article/${articleId}`,
           {
             method: "DELETE",
           }
         );
-        fetchArticle();
-        //console.log(response);
         const body = await response.json();
-        //console.log(body);
+        console.log(body);
+        fetchArticle();
       } catch (e) {
-        console.log("erreur", e);
+        console.log("e : ", e);
       }
     });
   });
+};
+
+const displayMenuCategories = (categoriesArr) => {
+  const liElements = categoriesArr.map((categoryElem) => {
+    const li = document.createElement("li");
+    li.innerHTML = `${categoryElem[0]} ( <strong>${categoryElem[1]}</strong> )`;
+    return li;
+  });
+
+  categoriesContainerElement.innerHTML = "";
+  categoriesContainerElement.append(...liElements);
+};
+
+const createMenuCategories = (articles) => {
+  const categories = articles.reduce((acc, article) => {
+    if (acc[article.category]) {
+      acc[article.category]++;
+    } else {
+      acc[article.category] = 1;
+    }
+    return acc;
+  }, {});
+
+  const categoriesArr = Object.keys(categories).map((category) => {
+    return [category, categories[category]];
+  });
+  displayMenuCategories(categoriesArr);
 };
 
 const fetchArticle = async () => {
   try {
     const response = await fetch("https://restapi.fr/api/article");
     let articles = await response.json();
-    // Restapi retourne un objet s'il n'y a qu'un seul article
-    // nous devons donc le transformer en tableau :
     if (!Array.isArray(articles)) {
       articles = [articles];
     }
     createArticles(articles);
+    createMenuCategories(articles);
   } catch (e) {
     console.log("e : ", e);
   }
