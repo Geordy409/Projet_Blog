@@ -1,4 +1,4 @@
-# 🚀 Projet Vite + Sass
+# 🚀 Projet BLOG
 
 Ce projet utilise **Vite** pour le bundling rapide et moderne, avec **Sass** pour le stylage avancé.
 
