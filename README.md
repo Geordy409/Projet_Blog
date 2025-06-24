@@ -1,92 +1,97 @@
+# 🚀 Projet Vite + Sass
 
-# 🚀 Création du projet avec Vite
-
-Ce guide vous accompagne dans la création d’un projet utilisant **Vite** avec **Sass**. Il part d’un projet vierge pour en faciliter la compréhension.
+Ce projet utilise **Vite** pour le bundling rapide et moderne, avec **Sass** pour le stylage avancé.
 
 ---
 
-## 📁 Étapes de configuration initiale
+## ⚙️ Étapes de configuration
 
-### 1. Initialisez le projet Node
+### 1. Initialiser le projet Node
 
 ```bash
 npm init
 ```
 
-### 2. Installez Vite en tant que dépendance de développement
+### 2. Installer Vite
 
 ```bash
-npm i -D vite
+npm install -D vite
 ```
 
-### 3. Créez le fichier de configuration `vite.config.js`
+### 3. Ajouter la configuration de Vite
+
+Créez un fichier `vite.config.js` :
 
 ```js
 import { defineConfig } from "vite";
+import { resolve } from "path";
 
 export default defineConfig({
-  root: "./src",
+  root: "src",
   build: {
     outDir: "../dist",
-    emptyOutDir: true,
+    target: "es2022",
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "src/index.html"),
+        form: resolve(__dirname, "src/form/form.html"),
+      },
+    },
   },
 });
 ```
 
 ---
 
-## 📄 Fichier `.gitignore`
+## 🎨 Ajouter Sass
 
-Créez un fichier `.gitignore` à la racine du projet et ajoutez-y :
-
-```
-node_modules
-dist
-```
-
----
-
-## 🗂️ Structure de base
-
-Créez un dossier `src` avec les fichiers suivants :
-
-- `index.html`
-- `style.css`
-- `index.js`
-
----
-
-## 🎨 Utilisation de Sass avec Vite
-
-### 1. Installation de Sass
-
-Pour ajouter Sass à votre projet Vite :
+### 1. Installer Sass
 
 ```bash
 npm install -D sass
 ```
 
-### 2. Renommer le fichier CSS
+## 📁 Structure du projet
 
-Renommez le fichier `style.css` en :
-
+```bash
+vite-project/
+│
+├── dist/                   # Répertoire de sortie (généré automatiquement)
+├── node_modules/           # Modules Node
+├── public/                 # Contient les fichiers statiques
+├── src/                    # Répertoire source principal
+│   ├── assets/
+│   │   ├── images/         # Images
+│   │   ├── javascripts/    # Scripts JS
+│   │   │   ├── modal.js
+│   │   │   └── topbar.js
+│   │   └── styles/         # Fichiers CSS générés automatiquement
+│   │       ├── index-GrrC6sdN.css
+│   │       └── main-GrrC6sdN.css
+│   ├── form/               # Dossier pour les composants de formulaire (si utilisé)
+│   ├── index.html          # Fichier HTML principal
+│   ├── index.js            # Script d'entrée
+│   ├── index.scss          # Fichier SCSS (page principale)
+│   └── style.scss          # Fichier SCSS (général)
+│
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── README.md
+└── vite.config.js
 ```
-style.scss
-```
-
-Vite reconnaîtra automatiquement le fichier comme un fichier Sass.
 
 ---
 
-## ✅ Vous êtes prêts !
+## ▶️ Démarrer le projet
 
-Lancez le serveur de développement avec :
+Lancer le serveur de développement :
 
 ```bash
 npx vite
 ```
 
-Ou ajoutez un script dans le `package.json` :
+Ou en ajoutant ce script dans `package.json` :
 
 ```json
 "scripts": {
@@ -94,7 +99,7 @@ Ou ajoutez un script dans le `package.json` :
 }
 ```
 
-Et démarrez avec :
+Et ensuite :
 
 ```bash
 npm run dev
@@ -102,7 +107,6 @@ npm run dev
 
 ---
 
-```
+## ✅ Vous êtes prêts !
 
-```
-
+Vous pouvez désormais développer avec **Vite** et **Sass** dans un environnement rapide, modulaire et moderne. Créé avec ❤️ par Geordy.🎉
